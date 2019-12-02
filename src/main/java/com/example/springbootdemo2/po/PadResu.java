@@ -10,6 +10,11 @@ public class PadResu {
         return result;
     }
 
+    public PadResu put(String key, Object value){
+        this.result.put(key , value);
+        return this;
+    }
+
     public PadResu setResult(Map<? extends String,?> map){
         this.result.putAll(map);
         return this;

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.springbootdemo2.po.PadResu;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,66 +47,57 @@ public class Test {
         System.out.println("respCode："+objectMap.get("respCode"));
         Map resultMap = (Map) objectMap.get("result");
 
+        List<Map<String,String>> list = new ArrayList<>();
         List offerList = (List) resultMap.get("OfferList");
-        Map offerListmap = (Map) offerList.get(0);
-
-
-        List memberList = (List) offerListmap.get("memberList");
-        Map memberListmap = (Map) memberList.get(0);
-
-        String offerName = (String) offerListmap.get("offerName");
-        String mainTag = (String) memberListmap.get("mainTag");
-        String memberNum = (String) memberListmap.get("memberNum");
-        String memberUsed = (String) memberListmap.get("memberUsed");
-        String used = (String) offerListmap.get("used");
-        String remain = (String) offerListmap.get("remain");
-
-        Map<String,String> map = new HashMap<>();
-        map.put("offerName",offerName);
-        map.put("mainTag",mainTag);
-        map.put("memberNum",memberNum);
-        map.put("memberUsed",memberUsed);
-        map.put("used",used);
-        map.put("remain",remain);
-
-        PadResu padResu = new PadResu();
-        padResu.setResult(map);
-        System.out.println(
-                padResu.getResult().get("offerName")+"      "+
-                padResu.getResult().get("mainTag")+"      "+
-                padResu.getResult().get("memberNum")+"      "+
-                padResu.getResult().get("memberUsed")+"      "+
-                padResu.getResult().get("used")+"      "+
-                padResu.getResult().get("remain"));
-
-//回退练习
-
-//64545的爽肤水
-
-
-
-
-
-
-       /* System.out.println("=================");
-        JSONObject responseObject = JSON.parseObject(response);
-        JSONObject object = responseObject.getJSONObject("object");
-        JSONObject result = object.getJSONObject("result");
-        JSONArray offerList1 = result.getJSONArray("OfferList");
-
-        for (int i=0 ; i < offerList1.size() ; i++) {
-            JSONArray memberList1 = offerList1.getJSONObject(i).getJSONArray("memberList");
-            System.out.println(memberList1);
-
-            for (int j = 0 ; j < memberList1.size() ; j++) {
-                System.out.println(memberList1.getJSONObject(j).getString("mainTag"));
-
+        for (int i = 0; i < offerList.size(); i++) {
+            Map offerListmap  =  (Map) offerList.get(i);
+            String offerName = (String) offerListmap.get("offerName");
+            String used = (String) offerListmap.get("used");
+            String remain = (String) offerListmap.get("remain");
+            List memberList = (List)offerListmap.get("memberList");
+            for (int j = 0; j < memberList.size(); j++) {
+                Map memberListmap = (Map) memberList.get(j);
+                String mainTag = (String) memberListmap.get("mainTag");
+                String memberNum = (String) memberListmap.get("memberNum");
+                String memberUsed = (String) memberListmap.get("memberUsed");
+                Map<String,String> map = new HashMap<>();
+                map.put("offerName",offerName);
+                map.put("mainTag",mainTag);
+                map.put("memberNum",memberNum);
+                map.put("memberUsed",memberUsed);
+                map.put("used",used);
+                map.put("remain",remain);
+                list.add(map);
             }
 
-        }*/
+        }
+
+        PadResu padResu = new PadResu();
+
+        System.out.println(padResu.put("list",list).getResult());
 
 
+        System.out.println("*******************");
 
 
-    }
+        String data = "" +
+                "{\"website\":\"chinamobilesh\", " +
+                "\"create_time\":157360, " +
+                "\"basic_version\":{" +
+                "\"user_gender\": \"男\"," +
+                "\"user_searched_history_by_orgs\": [{" +
+                "\"org_self\": true," +
+                "\"searched_date\": \"2017-11-07\"," +
+                "\"searched_org\": \"其他\"" +
+                "}," +
+                "{" +
+                "\"org_self\": false," +
+                "\"searched_date\": \"2017-07-08\"" +
+                ",\"searched_org\": \"线上消费分期\"" +
+                "}]" +
+                "}" +
+                "}";
+
+
+}
 }
