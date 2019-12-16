@@ -1,16 +1,14 @@
 package com.example.springbootdemo2.po;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
     private String username;
+    private String password;
     private String sex;
     private int age;
-
-    public User(String username, String sex, int age) {
-        this.username = username;
-        this.sex = sex;
-        this.age = age;
-    }
 
     public String getUsername() {
         return username;
@@ -36,10 +34,19 @@ public class User {
         this.age = age;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 '}';

@@ -215,7 +215,7 @@ public class Hello {
                  "}" +
                  "}" +
                  "}";
-        System.out.println("=================");
+       /* System.out.println("=================");
         JSONObject csfResJson = JSON.parseObject(response);
         String rtnCode = csfResJson.getString("rtnCode");
         JSONObject object = csfResJson.getJSONObject("object");
@@ -223,7 +223,7 @@ public class Hello {
         JSONArray offerList = result.getJSONArray("OfferList");
         List list = JSON.parseArray(offerList.toJSONString());
         System.out.println(offerList.getJSONObject(0));
-        System.out.println(list.toString());
+        System.out.println(list.toString());*/
 
 
         /*JSONObject offerListobject = OfferList.getJSONObject(0);

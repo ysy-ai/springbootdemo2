@@ -19,4 +19,6 @@ public class PadResu {
         this.result.putAll(map);
         return this;
     }
+
+
 }
