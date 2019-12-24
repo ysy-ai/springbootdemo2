@@ -49,22 +49,22 @@ public class Test {
         List<Map<String, String>> list = new ArrayList<>();
         //解析商品列表
         List<OfferList> offerLists = JSON.parseArray(offerList.toString(), OfferList.class);
-        for (int i = 0; i < offerLists.size(); i++) {
+        for (OfferList item : offerLists) {
             //商品名称
-            String offerName = offerLists.get(i).getOfferName();
+            String offerName = item.getOfferName();
             //已使用量
-            String used = offerLists.get(i).getUsed();
+            String used = item.getUsed();
             //剩余量
-            String remain = offerLists.get(i).getRemain();
+            String remain = item.getRemain();
 
-            List<MemberList> memberList = offerLists.get(i).getMemberList();
-                for (int j = 0; j < memberList.size(); j++) {
+            List<MemberList> memberList = item.getMemberList();
+            for (MemberList value : memberList) {
                 //主副卡标识
-                String mainTag = memberList.get(j).getMainTag();
+                String mainTag = value.getMainTag();
                 //成员号码
-                String memberNum = memberList.get(j).getMemberNum();
+                String memberNum = value.getMemberNum();
                 //可共享流量
-                String memberUsed = memberList.get(j).getMemberUsed();
+                String memberUsed = value.getMemberUsed();
 
                 Map<String, String> map = new HashMap<>();
                 map.put("offerName", offerName);
